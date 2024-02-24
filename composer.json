@@ -1,0 +1,41 @@
+{
+  "name": "omegacms/email",
+  "type": "package",
+  "description": "Omega CMS Email Package",
+  "keywords": [ "omegacms", "framework", "email"],
+  "homepage": "https://omegacms.github.io",
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Adriano Giovannini",
+      "email": "omegacms@outlook.com",
+      "homepage": "https://omegacms.github.io",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "omegacms/service-provider": "^1.0.0",
+    "swiftmailer/swiftmailer": "^6.3"
+  },
+  "require-dev": {
+    "omegacms/testing": "^1.0.0",
+    "filp/whoops": "^2.1",
+    "phpunit/phpunit": "^9.5",
+    "symfony/process": "^5.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Omega\\Email\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Omega\\Email\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
+  "minimum-stability": "stable"
+}
