@@ -16,7 +16,8 @@
   "require": {
     "php": ">=8.2",
     "omegacms/service-provider": "^1.0.0",
-    "swiftmailer/swiftmailer": "^6.3"
+    "swiftmailer/swiftmailer": "^6.3",
+   "wildbit/swiftmailer-postmark": "^3.4"
   },
   "require-dev": {
     "omegacms/testing": "^1.0.0",
