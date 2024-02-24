@@ -22,6 +22,7 @@ namespace Omega\Email\Driver;
  * @use
  */
 use Omega\Email\Exception\CompositionEmailException;
+use Postmark\Transport;
 use Swift_Mailer;
 use Swift_Message;
 
@@ -61,13 +62,13 @@ class PostmarkDriver extends AbstractEmailDriver
      */
     public function send() : void
     {
-        if ( ! isset( $this->getTo() ) ) {
+        if ( ! $this->getTo() ) {
             throw new CompositionEmailException(
                 "Params 'to' required."
             );
         }
 
-        if ( ! isset( $this->getText() ) && ! isset( $this->getHtml() )  ) {
+        if ( ! $this->getText() && ! $this->getHtml() ) {
             throw new CompositionEmailException(
                 "Params 'text' or 'email' required."
             );
@@ -80,18 +81,18 @@ class PostmarkDriver extends AbstractEmailDriver
             ->setFrom( [ $fromEmail => $fromName ] )
             ->setTo( [ $this->getTo() ] );
 
-        if ( isset( $this->getText() ) && ! isset( $this->getHtml() ) ) {
+        if ( $this->getText() && ! $this->getHtml() ) {
             $message->setBody( $this->getText(), 'text/plain' );
         }
         
-        if ( ! isset( $this->getText() ) && isset( $this->getHtml() ) ) {
+        if ( ! $this->getText() && $this->getHtml() ) {
             $message->setBody( $this->getHtml(), 'text/html' );
         }
 
         if ( isset( $this->getText(), $this->getHtml() ) ) {
             $message
                 ->setBody( $this->getHtml(), 'text/html' )
-                ->setPart( $this->getText(), 'text/plain' );
+                ->addPart( $this->getText(), 'text/plain' );
         }
 
         $this->mailer()->send( $message );
