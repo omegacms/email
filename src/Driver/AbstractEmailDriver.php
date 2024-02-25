@@ -21,11 +21,11 @@ namespace Omega\Email\Driver;
 /**
  * Abstract email class.
  *
- * The AbstractEmailDriver class is part of the Omega CMS Email Package and serves as 
- * an abstract implementation of the EmailDriverInterface. This abstract class provides 
- * a foundational structure for creating specific email driver implementations by defining 
+ * The AbstractEmailDriver class is part of the Omega CMS Email Package and serves as
+ * an abstract implementation of the EmailDriverInterface. This abstract class provided
+ * a foundational structure for creating specific email driver implementations by defining
  * common properties and methods.
- * 
+ *
  * @category    Omega
  * @package     Omega\Email
  * @subpackage  Omega\Email\Driver
@@ -39,76 +39,53 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 {
     /**
      * Config array
-     * 
+     *
      * @var array $config Holds an array containing configuration settings for the email driver.
      */
-    private array $config;
+    protected array $config;
 
     /**
      * The recipient's email address.
-     * 
+     *
      * @var string $to Holds the recipient's email address.
      */
-    private string $to;
+    private string $to = '';
 
     /**
      * The subject of the email.
-     * 
+     *
      * @var string $subject Holds the subject of the email
      */
-    private string $subject;
+    private string $subject = '';
 
     /**
      * The plain text content of the email.
-     * 
+     *
      * @var string $text Holds the plain text content od the email.
      */
-    private string $text;
+    private string $text = '';
 
     /**
      * The HTML content of the email.
-     * 
+     *
      * @var string $html Holds the HTML content of the email.
      */
-    private string $html;
+    private string $html = '';
 
     /**
      * AbstractEmailDriver class constructor.
-     * 
+     *
      * @param  array $config Holds an array of configuration params.
      * @return void
      */
     public function __construct( array $config )
     {
-        $this->config = $this->setConfig( $config );
-    }
-
-    /**
-     * Get the configuration settings for the email driver.
-     * 
-     * @return array Return an array containing configuration settings.
-     */
-    public function getConfig() : array
-    {
-        return $this->config;
-    }
-
-    /**
-     * Set the configuration settings for the email driver.
-     * 
-     * @param  array $config Holds the configuration settings.
-     * @return $this
-     */
-    public function setConfig( array $config ) : static
-    {
-        $this->config[] = $config;
-
-        return $this;
+        $this->config = $config;
     }
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return string Return a string representing the recipient's email address.
      */
     public function getTo() : string
@@ -119,9 +96,9 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @param  string $to Holds the recipient's email address.
-     * @return $this  
+     * @return $this
      */
     public function setTo( string $to ) : static
     {
@@ -132,7 +109,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return string Return a string representing the email subject.
      */
     public function getSubject() : string
@@ -142,7 +119,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @param  string $subject Holds the email subject.
      * @return $this
      */
@@ -155,7 +132,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return string Return a string representing the plain text content.
      */
     public function getText() : string
@@ -165,7 +142,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @param  string $text Holds the plain text content.
      * @return $this
      */
@@ -178,7 +155,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return string Return a string representing the HTML content.
      */
     public function getHtml() : string
@@ -188,7 +165,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @param  string $text Holds the html text content.
      * @return $this
      */
@@ -201,7 +178,7 @@ abstract class AbstractEmailDriver implements EmailDriverInterface
 
     /**
      * @inheritdoc
-     * 
+     *
      * @return void
      */
     abstract public function send() : void;

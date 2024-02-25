@@ -45,6 +45,13 @@ use Swift_Message;
 class PostmarkDriver extends AbstractEmailDriver
 {
     /**
+     * Swift mailer object.
+     * 
+     * @var Swift_Mailer $mailer Holds the current instance of Swift Mailer.
+     */
+    private Swift_Mailer $mailer;
+
+    /**
      * PPostmarkDriver class constructor.
      * 
      * @param  array $config Holds an array of configuration params.
@@ -74,8 +81,8 @@ class PostmarkDriver extends AbstractEmailDriver
             );
         }
 
-        $fromName  = $this->getConfig( [ 'from' ][ 'name'  ] );
-        $fromEmail = $this->getConfig( [ 'from' ][ 'email' ] );
+        $fromName  = $this->config[ 'from' ][ 'name'  ];
+        $fromEmail = $this->config[ 'from' ][ 'email' ];
         $subject   = $this->getSubject() ?? "Message from {$fromName}";
         $message   = ( new Swift_Message( $subject ) )
             ->setFrom( [ $fromEmail => $fromName ] )
@@ -89,7 +96,7 @@ class PostmarkDriver extends AbstractEmailDriver
             $message->setBody( $this->getHtml(), 'text/html' );
         }
 
-        if ( isset( $this->getText(), $this->getHtml() ) ) {
+        if ( $this->getText() !== null && $this->getHtml() !== null ) {
             $message
                 ->setBody( $this->getHtml(), 'text/html' )
                 ->addPart( $this->getText(), 'text/plain' );
@@ -107,7 +114,7 @@ class PostmarkDriver extends AbstractEmailDriver
     private function mailer() : Swift_Mailer
     {
         if ( ! isset( $this->mailer ) ) {
-            $transport    = new Transport( $this->getConfig( ['token' ] ) );
+            $transport    = new Transport( $this->config['token' ] );
             $this->mailer = new Swift_Mailer( $transport);
         }
 
