@@ -24,7 +24,7 @@ namespace Omega\Email;
 use Closure;
 use Omega\Email\Driver\EmailDriverInterface;
 use Omega\Email\Exception\EmailDriverException;
-use Omega\ServiceProvider\ServiceProviderInterface;
+use Omega\Container\ServiceProvider\ServiceProviderInterface;
 
 /**
  * Email factory class.
