@@ -92,7 +92,7 @@ interface EmailDriverInterface
     /**
      * Set the html text content of the email.
      * 
-     * @param  string $text Holds the html text content.
+     * @param  string $html Holds the html text content.
      * @return $this
      */
     public function setHtml( string $html ) : static;

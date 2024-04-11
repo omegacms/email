@@ -52,7 +52,7 @@ class PostmarkDriver extends AbstractEmailDriver
     private Swift_Mailer $mailer;
 
     /**
-     * PPostmarkDriver class constructor.
+     * PostmarkDriver class constructor.
      * 
      * @param  array $config Holds an array of configuration params.
      * @return void
